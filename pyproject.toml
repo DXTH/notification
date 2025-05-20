@@ -8,13 +8,36 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "streamlit (>=1.45.1,<2.0.0)"
+    "pydantic-settings (>=2.9.1,<3.0.0)",
+    "pytest (>=8.3.5,<9.0.0)"
 ]
 
 [tool.poetry]
+name = "reminder-api"
+version = "0.1.0"
+description = "A reminder API backend for app"
+authors = ["Denys Harkavenko <dxth63@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = "^0.104.1"
+uvicorn = "^0.24.0"
+sqlalchemy = "^2.0.23"
+psycopg2-binary = "^2.9.9"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.6"
+pydantic = "^2.4.2"
+python-dotenv = "^1.0.0"
+alembic = "^1.12.1"
+email-validator = "^2.1.0.post1"
 
 [tool.poetry.group.dev.dependencies]
 pandas = "^2.2.3"
+pytest-cov = "^6.1.1"
+pytest = "^8.3.5"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -103,3 +126,6 @@ omit = [
     "*/errors/*",
     "*/tests/*",
 ]
+
+[tool.poetry.scripts]
+start = "uvicorn src.main:app --reload"
